@@ -207,6 +207,5 @@ std::ostream& operator<<(std::ostream& os, const Polynom<T>& p) {
         os << cofs[i] << "x^" << i << " ";
         if (i > 0) os << " + ";
     }
-    os << "\n---------------------------------------------\n";
     return os;
 }

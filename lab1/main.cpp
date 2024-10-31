@@ -12,8 +12,8 @@ int main() {
 		Polynom<double> p2(array_d, 2);
 
 
-		std::cout << p1;
-		std::cout << p2;
+		std::cout << p1 << std::endl;
+		std::cout << p2 << std::endl;
 
 		double* result = find_real_roots(p2);
 		std::cout << result;
