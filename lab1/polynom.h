@@ -98,6 +98,7 @@ public:
         delete[] _coeffs;
         _coeffs = new_coeffs;
         _degree = new_degree;
+        delete[] new_coeffs;
     }
 
 
@@ -128,6 +129,7 @@ public:
         delete[] _coeffs;
         _coeffs = new_coeffs;
         _degree = new_degree;
+        delete[] new_coeffs;
         return *this;
     }
 
@@ -143,6 +145,7 @@ public:
         }
         delete[] _coeffs;
         _coeffs = new_coeffs;
+        delete[] new_coeffs;
         return *this;
     }
 
@@ -170,10 +173,7 @@ public:
         return !(*this == other);
     }
 
-    // ќператоры дл¤ работы с полиномами
 };
-
-// –еализации методов шаблона
 
 
 
