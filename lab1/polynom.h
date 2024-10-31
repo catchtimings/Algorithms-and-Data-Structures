@@ -37,10 +37,10 @@ public:
     }
 
 
-    size_t degree() const { return _degree; }
+    size_t degree() const noexcept { return _degree; }
 
 
-    T* coeffs() const { return _coeffs; }
+    T* coeffs() const noexcept { return _coeffs; }
 
 
     T& operator[](const size_t& index) const {
@@ -58,7 +58,7 @@ public:
     T calculate(const T& x) const {
         T result = 0;
         for (size_t i = 0; i <= _degree; ++i) {
-            result += _coeffs[i] * std::pow(x, i);
+            result += _coeffs[i] * (x * x);
         }
         return result;
     }
@@ -84,6 +84,7 @@ public:
         delete[] _coeffs;
         _coeffs = new_coeffs;
         _degree = max_degree;
+        delete[] new_coeffs;
     }
 
 
