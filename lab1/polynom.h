@@ -12,19 +12,22 @@ private:
 
 public:
 
-    Polynom(const size_t& degree) : _degree(degree) {
+    Polynom(const size_t& degree) : _degree(degree) 
+    {
         _coeffs = new T[_degree + 1];
         for (size_t i = 0; i <= _degree; ++i) _coeffs[i] = 0;
     }
 
 
-    Polynom(const T* vector, const size_t& degree) : _degree(degree) {
+    Polynom(const T* vector, const size_t& degree) : _degree(degree) 
+    {
         _coeffs = new T[_degree + 1];
         for (size_t i = 0; i <= _degree; ++i) _coeffs[i] = vector[i];
     }
 
 
-    Polynom(const Polynom<T>& other) : _degree(other._degree) {
+    Polynom(const Polynom<T>& other) : _degree(other._degree) 
+    {
         _coeffs = new T[_degree + 1];
         for (size_t i = 0; i <= _degree; ++i) {
             _coeffs[i] = other._coeffs[i];
@@ -43,13 +46,15 @@ public:
     T* coeffs() const noexcept { return _coeffs; }
 
 
-    T& operator[](const size_t& index) const {
+    T& operator[](const size_t& index) const 
+    {
         if (index < 0 || index > _degree) throw std::out_of_range("Invalid degree value");
         return _coeffs[index];
     }
 
 
-    void set(const T& value, const size_t& degree) {
+    void set(const T& value, const size_t& degree) 
+    {
         if (degree < 0 || degree > _degree) throw std::out_of_range("Invalid degree value");
         _coeffs[degree] = value;
     }
@@ -57,7 +62,8 @@ public:
 
     T calculate(const T& x) const {
         T result = 0;
-        for (size_t i = 0; i <= _degree; ++i) {
+        for (size_t i = 0; i <= _degree; ++i) 
+        {
             result += _coeffs[i] * (x * x);
         }
         return result;
@@ -67,7 +73,8 @@ public:
     void shrink_to_fit() {
         int deg = static_cast<int>(_degree);
         size_t max_degree = 0;
-        for (int i = deg; i >= 0; --i) {
+        for (int i = deg; i >= 0; --i) 
+        {
             if (_coeffs[i] != 0) {
                 max_degree = static_cast<size_t>(i);
                 break;
@@ -78,7 +85,8 @@ public:
 
         T* new_coeffs = new T[max_degree + 1];
 
-        for (size_t i = 0; i <= max_degree; ++i) {
+        for (size_t i = 0; i <= max_degree; ++i) 
+        {
             new_coeffs[i] = _coeffs[i];
         }
         delete[] _coeffs;
@@ -87,7 +95,8 @@ public:
     }
 
 
-    void expand(const size_t& new_degree) {
+    void expand(const size_t& new_degree) 
+    {
         if (new_degree <= _degree) throw std::invalid_argument("New degree must be greater than old");
 
         T* new_coeffs = new T[new_degree + 1];
@@ -106,7 +115,8 @@ public:
             delete[] _coeffs;
             _degree = other.degree();
             _coeffs = new T[_degree + 1];
-            for (size_t i = 0; i <= _degree; ++i) {
+            for (size_t i = 0; i <= _degree; ++i) 
+            {
                 _coeffs[i] = other._coeffs[i];
             }
         }
@@ -114,7 +124,8 @@ public:
     }
 
 
-    Polynom<T>& operator +=(const Polynom<T>& other) {
+    Polynom<T>& operator +=(const Polynom<T>& other) 
+    {
         size_t new_degree = _degree > other.degree() ? _degree : other.degree();
         T* new_coeffs = new T[new_degree + 1];
 
@@ -132,7 +143,8 @@ public:
     }
 
 
-    Polynom<T>& operator -=(const Polynom<T>& other) {
+    Polynom<T>& operator -=(const Polynom<T>& other) 
+    {
         if (_degree < other.degree()) throw std::logic_error("You can't minusing big from small");
 
         T* new_coeffs = new T[_degree + 1];
@@ -147,7 +159,8 @@ public:
     }
 
 
-    Polynom<T>& operator *=(const T& value) {
+    Polynom<T>& operator *=(const T& value) 
+    {
         for (size_t i = 0; i <= _degree; ++i) {
             _coeffs[i] *= value;
         }
@@ -155,7 +168,8 @@ public:
     }
 
 
-    bool operator==(const Polynom<T>& other) const {
+    bool operator==(const Polynom<T>& other) const 
+    {
         if (_degree != other._degree) return false;
 
         for (size_t i = 0; i <= _degree; ++i) {
@@ -166,7 +180,8 @@ public:
     }
 
 
-    bool operator!=(const Polynom<T>& other) const {
+    bool operator!=(const Polynom<T>& other) const 
+    {
         return !(*this == other);
     }
 
@@ -175,32 +190,37 @@ public:
 
 
 template <class T>
-Polynom<T> operator+(Polynom<T> lhs, const Polynom<T>& rhs) {
+Polynom<T> operator+(Polynom<T> lhs, const Polynom<T>& rhs)
+{
     return lhs += rhs;
 }
 
 template <class T>
-Polynom<T> operator*(Polynom<T> lhs, const T& value) {
+Polynom<T> operator*(Polynom<T> lhs, const T& value) 
+{
     return lhs *= value;
 }
 
 template <class T>
-Polynom<T> operator-(Polynom<T> lhs, const Polynom<T>& rhs) {
+Polynom<T> operator-(Polynom<T> lhs, const Polynom<T>& rhs) 
+{
     return lhs -= rhs;
 }
 
 template <class T>
-Polynom<T> operator*(const T& value, Polynom<T> lhs) {
+Polynom<T> operator*(const T& value, Polynom<T> lhs) 
+{
     return lhs *= value;
 }
 
 template <class T>
-std::ostream& operator<<(std::ostream& os, const Polynom<T>& p) {
-    T* cofs = p.coeffs();
+std::ostream& operator<<(std::ostream& os, const Polynom<T>& p) 
+{
+    T* coeffs = p.coeffs();
     int deg = static_cast<int>(p.degree());
     for (int i = deg; i >= 0; --i)
     {
-        os << cofs[i] << "x^" << i << " ";
+        os << "(" << coeffs[i] << ")" << "x^" << i << " ";
         if (i > 0) os << " + ";
     }
     return os;
