@@ -60,17 +60,19 @@ public:
     }
 
 
-    T calculate(const T& x) const {
+    T calculate(const T& x) const 
+    {
         T result = 0;
         for (size_t i = 0; i <= _degree; ++i) 
         {
-            result += _coeffs[i] * (x * x);
+            result += _coeffs[i] * pow(x,i);
         }
         return result;
     }
 
 
-    void shrink_to_fit() {
+    void shrink_to_fit() 
+    {
         int deg = static_cast<int>(_degree);
         size_t max_degree = 0;
         for (int i = deg; i >= 0; --i) 
@@ -110,7 +112,8 @@ public:
     }
 
 
-    Polynom<T>& operator=(const Polynom<T>& other) {
+    Polynom<T>& operator=(const Polynom<T>& other) 
+    {
         if (this != &other) {
             delete[] _coeffs;
             _degree = other.degree();
