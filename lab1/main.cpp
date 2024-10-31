@@ -9,11 +9,13 @@ int main() {
 		double array_d[] = { 2.45, 6.46, 3.29 };
 
 		Polynom<int> p1(array, 4);
+		Polynom<int> p_1(array, 4);
 		Polynom<double> p2(array_d, 2);
 
 
 		std::cout << p1 << std::endl;
 		std::cout << p2 << std::endl;
+		std::cout << p1 + p_1 << std::endl;
 
 		double* result = find_real_roots(p2);
 		std::cout << result;
