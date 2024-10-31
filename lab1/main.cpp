@@ -19,9 +19,13 @@ int main() {
 		std::cout << "Polynom 1 * num: " << p1 * num << std::endl;
 		std::cout << "num * Polynom 1: " << num * p1 << std::endl;
 
+		int result_root = p1.calculate(num);
+		std::cout << "Result with root " << num << ": " << result_root << std::endl;
 
 		int* roots = find_real_roots(p2);
 		std::cout << "Roots: " << *roots << std::endl;
+
+		std::cout << "Polynom 2 - Polynom 1: " << p2 - p1 << std::endl;
 	}
 	catch (const std::invalid_argument& ia) {
 		std::cerr << ia.what() << std::endl;
