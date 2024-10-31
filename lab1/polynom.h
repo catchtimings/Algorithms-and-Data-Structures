@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <cmath>
+#include <algorithm>
 
 template <class T>
 class Polynom
@@ -15,7 +16,7 @@ public:
     Polynom(const size_t& degree) : _degree(degree) 
     {
         _coeffs = new T[_degree + 1];
-        for (size_t i = 0; i <= _degree; ++i) _coeffs[i] = 0;
+        std::fill_n(_coeffs, _degree + 1, 0);
     }
 
 
