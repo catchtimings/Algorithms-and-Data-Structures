@@ -29,11 +29,11 @@ int main() {
 		std::complex<double> complex_array[4];
 
 		complex_array[0] = std::complex<double>(1.0, 2.0);
-		complex_array[1] = std::complex<double>(3.0, 4.0);  
-		complex_array[2] = std::complex<double>(5.0, 6.0);  
+		complex_array[1] = std::complex<double>(3.0, 4.0);
+		complex_array[2] = std::complex<double>(5.0, 6.0);
 		complex_array[3] = std::complex<double>(7.0, 8.0);
 
-		Polynom<std::complex<double>> pol_complex(complex_array, 3);
+		Polynom<std::complex<double>>pol_complex(complex_array, 3);
 
 		std::cout << "Roots: " << *find_real_roots(pol_complex) << std::endl;
 	}
