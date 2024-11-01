@@ -54,11 +54,6 @@ T* find_real_roots(const Polynom<T>& pol) {
     return roots;
 }
 
-//template <>
-//std::complex<float>* find_real_roots(const Polynom<std::complex<float>>&) {
-//    throw std::invalid_argument("There are no real roots for complex polynomials");
-//}
-
 template<>
 std::complex<double>* find_real_roots(const Polynom<std::complex<double>>& pol)
 {
@@ -77,14 +72,14 @@ std::complex<double>* find_real_roots(const Polynom<std::complex<double>>& pol)
 
     std::complex<double> Q = (p / 3.0) * (p / 3.0) * (p / 3.0) + (q / 2.0) * (q / 2.0);
 
+    std::complex<double> u = std::pow(-q / 2.0 + std::sqrt(Q), 1.0 / 3.0);
+    std::complex<double> v = std::pow(-q / 2.0 - std::sqrt(Q), 1.0 / 3.0);
+
     std::complex<double>* roots = new std::complex<double>[3];
     if (Q.real() > 0) {
-        std::complex<double> u = std::pow(-q / 2.0 + std::sqrt(Q), 1.0 / 3.0);
-        std::complex<double> v = std::pow(-q / 2.0 - std::sqrt(Q), 1.0 / 3.0);
         roots[0] = u + v;
     }
     else if (Q.real() == 0) {
-        std::complex<double> u = std::pow(-q / 2.0, 1.0 / 3.0);
         roots[0] = 2.0 * u;
         roots[1] = roots[2] = -u;
     }
@@ -94,6 +89,47 @@ std::complex<double>* find_real_roots(const Polynom<std::complex<double>>& pol)
         roots[0] = 2.0 * r * std::exp(std::complex<double>(0, theta / 3.0));
         roots[1] = 2.0 * r * std::exp(std::complex<double>(0, (theta + 2 * M_PI) / 3.0));
         roots[2] = 2.0 * r * std::exp(std::complex<double>(0, (theta + 4 * M_PI) / 3.0));
+    }
+
+    return roots;
+}
+
+template<>
+std::complex<float>* find_real_roots(const Polynom<std::complex<float>>& pol)
+{
+    std::complex<float>* coeffs = pol.coeffs();
+
+    if (pol.degree() != 3) throw std::invalid_argument("Max degree must be 3");
+
+    std::complex<float> a = coeffs[3];
+    std::complex<float> b = coeffs[2];
+    std::complex<float> c = coeffs[1];
+    std::complex<float> d = coeffs[0];
+
+    if (a == static_cast<std::complex<float>>(0)) throw std::invalid_argument("Coeff must not be 0");
+
+    std::complex<float> p = (float(3.0) * a * c - b * b) / (float(3.0) * a * a);
+    std::complex<float> q = (float(2.0) * b * b * b - float(9.0) * a * b * c + float(27.0) * a * a * d) / (float(27.0) * a * a * a);
+
+    std::complex<float> Q = (p / float(3.0)) * (p / float(3.0)) * (p / float(3.0)) + (q / float(2.0)) * (q / float(2.0));
+
+    std::complex<float> u = std::pow(-q / float(2.0) + std::sqrt(Q), float(1.0) / float(3.0));
+    std::complex<float> v = std::pow(-q / float(2.0) - std::sqrt(Q), float(1.0) / float(3.0));
+
+    std::complex<float>* roots = new std::complex<float>[3];
+    if (Q.real() > 0) {
+        roots[0] = u + v;
+    }
+    else if (Q.real() == 0) {
+        roots[0] = float(2.0) * u;
+        roots[1] = roots[2] = -u;
+    }
+    else {
+        float r = std::sqrt(-std::norm(q) / 4.0);
+        float theta = acos(-q.real() / (float(2.0) * r * r * r));
+        roots[0] = float(2.0) * r * std::exp(std::complex<float>(0, theta / float(3.0)));
+        roots[1] = float(2.0) * r * std::exp(std::complex<float>(0, (theta + 2 * M_PI) / float(3.0)));
+        roots[2] = float(2.0) * r * std::exp(std::complex<float>(0, (theta + 4 * M_PI) / float(3.0)));
     }
 
     return roots;
