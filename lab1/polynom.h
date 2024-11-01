@@ -4,7 +4,7 @@
 #include <cmath>
 #include <algorithm>
 
-template <class T>
+template <typename T>
 class Polynom
 {
 private:
