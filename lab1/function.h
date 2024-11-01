@@ -6,7 +6,8 @@
 #define M_PI 3.14
 
 template <typename T>
-T* find_real_roots(const Polynom<T>& pol) {
+T* find_real_roots(const Polynom<T>& pol)
+{
 
     T* coeffs = pol.coeffs();
     size_t degree = pol.degree();

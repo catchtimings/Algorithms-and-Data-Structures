@@ -2,7 +2,8 @@
 #include "polynom.h"
 #include "function.h"
 
-int main() {
+int main() 
+{
 	try 
 	{
 		int array1[] = { 1, 2, 3, 4, 5 };
