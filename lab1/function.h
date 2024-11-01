@@ -53,3 +53,12 @@ T* find_real_roots(const Polynom<T>& pol) {
     return roots;
 }
 
+template <>
+std::complex<float>* find_real_roots(const Polynom<std::complex<float>>& pol) {
+    throw std::invalid_argument("There are no real roots for complex polynomials");
+}
+
+template <>
+std::complex<double>* find_real_roots(const Polynom<std::complex<double>>& pol) {
+    throw std::invalid_argument("There are no real roots for complex polynomials");
+}
