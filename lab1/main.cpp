@@ -38,13 +38,16 @@ int main()
 
 		std::cout << "Roots: " << *find_real_roots(pol_complex) << std::endl;
 	}
-	catch (const std::invalid_argument& ia) {
+	catch (const std::invalid_argument& ia) 
+	{
 		std::cerr << ia.what() << std::endl;
 	}
-	catch (const std::out_of_range& ooa) {
+	catch (const std::out_of_range& ooa) 
+	{
 		std::cerr << ooa.what() << std::endl;
 	}
-	catch (const std::logic_error& le) {
+	catch (const std::logic_error& le) 
+	{
 		std::cerr << le.what() << std::endl;
 	}
 	catch (...) {

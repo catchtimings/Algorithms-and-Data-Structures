@@ -66,7 +66,7 @@ public:
         T result = 0;
         for (size_t i = 0; i <= _degree; ++i) 
         {
-            result += _coeffs[i] * pow(x,i);
+            result += _coeffs[i] * T(pow(x,i));
         }
         return result;
     }

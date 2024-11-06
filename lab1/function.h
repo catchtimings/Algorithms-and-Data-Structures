@@ -34,7 +34,8 @@ T* find_real_roots(const Polynom<T>& pol)
 
     T discriminant = (q * q) / 4 + (p * p * p) / 27;
 
-    if (discriminant > T(0)) {
+    if (discriminant > T(0)) 
+    {
         T u = std::cbrt(-q / T(2) + std::sqrt(discriminant));
         T v = std::cbrt(-q / T(2) - std::sqrt(discriminant));
         roots[count++] = u + v - b1 / T(3);
@@ -44,7 +45,8 @@ T* find_real_roots(const Polynom<T>& pol)
         roots[count++] = 2 * u - b1 / T(3);
         roots[count++] = u - b1 / T(3);
     }
-    else {
+    else 
+    {
         T u = std::cbrt(-q / T(2) + std::sqrt(-discriminant));
         T v = std::cbrt(-q / T(2) - std::sqrt(-discriminant));
         roots[count++] = u + v - b1 / T(3);
@@ -67,7 +69,7 @@ std::complex<double>* find_real_roots(const Polynom<std::complex<double>>& pol)
     std::complex<double> c = coeffs[1];
     std::complex<double> d = coeffs[0];
 
-    if (a == static_cast<std::complex<double>>(0)) throw std::invalid_argument("Coeff must not be 0");
+    if (a == std::complex<double>(0)) throw std::invalid_argument("Coeff must not be 0");
     std::complex<double> p = (3.0 * a * c - b * b) / (3.0 * a * a);
     std::complex<double> q = (2.0 * b * b * b - 9.0 * a * b * c + 27.0 * a * a * d) / (27.0 * a * a * a);
 
@@ -77,14 +79,16 @@ std::complex<double>* find_real_roots(const Polynom<std::complex<double>>& pol)
     std::complex<double> v = std::pow(-q / 2.0 - std::sqrt(Q), 1.0 / 3.0);
 
     std::complex<double>* roots = new std::complex<double>[3];
-    if (Q.real() > 0) {
+    if (Q.real() > 0) 
+    {
         roots[0] = u + v;
     }
     else if (Q.real() == 0) {
         roots[0] = 2.0 * u;
         roots[1] = roots[2] = -u;
     }
-    else {
+    else 
+    {
         double r = std::sqrt(-std::norm(q) / 4.0);
         double theta = acos(-q.real() / (2.0 * r * r * r));
         roots[0] = 2.0 * r * std::exp(std::complex<double>(0, theta / 3.0));
@@ -118,14 +122,16 @@ std::complex<float>* find_real_roots(const Polynom<std::complex<float>>& pol)
     std::complex<float> v = std::pow(-q / float(2.0) - std::sqrt(Q), float(1.0) / float(3.0));
 
     std::complex<float>* roots = new std::complex<float>[3];
-    if (Q.real() > 0) {
+    if (Q.real() > 0) 
+    {
         roots[0] = u + v;
     }
     else if (Q.real() == 0) {
         roots[0] = float(2.0) * u;
         roots[1] = roots[2] = -u;
     }
-    else {
+    else 
+    {
         float r = std::sqrt(-std::norm(q) / 4.0);
         float theta = acos(-q.real() / (float(2.0) * r * r * r));
         roots[0] = float(2.0) * r * std::exp(std::complex<float>(0, theta / float(3.0)));
