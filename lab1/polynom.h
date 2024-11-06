@@ -30,9 +30,7 @@ public:
     Polynom(const Polynom<T>& other) : _degree(other._degree) 
     {
         _coeffs = new T[_degree + 1];
-        for (size_t i = 0; i <= _degree; ++i) {
-            _coeffs[i] = other._coeffs[i];
-        }
+        for (size_t i = 0; i <= _degree; ++i) _coeffs[i] = other._coeffs[i];
     }
 
 
@@ -103,7 +101,8 @@ public:
         if (new_degree <= _degree) throw std::invalid_argument("New degree must be greater than old");
 
         T* new_coeffs = new T[new_degree + 1];
-        for (size_t i = 0; i <= new_degree; ++i) {
+        for (size_t i = 0; i <= new_degree; ++i) 
+        {
             T value = (i > _degree) ? 0 : _coeffs[i];
             new_coeffs[i] = value;
         }
@@ -115,7 +114,8 @@ public:
 
     Polynom<T>& operator=(const Polynom<T>& other) 
     {
-        if (this != &other) {
+        if (this != &other) 
+        {
             delete[] _coeffs;
             _degree = other.degree();
             _coeffs = new T[_degree + 1];
