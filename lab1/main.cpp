@@ -66,4 +66,5 @@ int main()
 		std::cerr << "Something went wrong..." << std::endl;
 	}
 
+	return 0;
 }
