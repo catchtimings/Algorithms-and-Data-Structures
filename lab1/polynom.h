@@ -112,7 +112,7 @@ public:
     }
 
 
-    Polynom<T>& operator=(const Polynom<T>& other) 
+    Polynom& operator=(const Polynom& other) 
     {
         if (this != &other) 
         {
@@ -128,42 +128,31 @@ public:
     }
 
 
-    Polynom<T>& operator +=(const Polynom<T>& other) 
+    Polynom& operator +=(const Polynom& other) 
     {
-        size_t new_degree = _degree > other.degree() ? _degree : other.degree();
-        T* new_coeffs = new T[new_degree + 1];
+        if (_degree != other.degree()) throw std::logic_error("Max degree must be the same");
 
-        for (size_t i = 0; i <= new_degree; ++i)
+        for (size_t i = 0; i <= _degree; ++i)
         {
-            T c1 = (i > _degree) ? 0 : _coeffs[i];
-            T c2 = (i > other.degree()) ? 0 : other._coeffs[i];
-            new_coeffs[i] = c1 + c2;
+            _coeffs[i] += other._coeffs[i];
         }
-
-        delete[] _coeffs;
-        _coeffs = new_coeffs;
-        _degree = new_degree;
         return *this;
     }
 
 
-    Polynom<T>& operator -=(const Polynom<T>& other) 
+    Polynom& operator -=(const Polynom& other) 
     {
-        if (_degree < other.degree()) throw std::logic_error("You can't minusing big from small");
+        if (_degree != other.degree()) throw std::logic_error("Max degree must be the same");
 
-        T* new_coeffs = new T[_degree + 1];
-        for (size_t i = 0; i <= _degree; ++i) {
-            T c1 = _coeffs[i];
-            T c2 = (i > other.degree()) ? 0 : other._coeffs[i];
-            new_coeffs[i] = c1 - c2;
+        for (size_t i = 0; i <= _degree; ++i)
+        {
+            _coeffs[i] -= other._coeffs[i];
         }
-        delete[] _coeffs;
-        _coeffs = new_coeffs;
         return *this;
     }
 
 
-    Polynom<T>& operator *=(const T& value) 
+    Polynom& operator *=(const T& value) 
     {
         for (size_t i = 0; i <= _degree; ++i) {
             _coeffs[i] *= value;
@@ -172,7 +161,7 @@ public:
     }
 
 
-    bool operator==(const Polynom<T>& other) const 
+    bool operator==(const Polynom& other) const 
     {
         if (_degree != other._degree) return false;
 
@@ -184,13 +173,12 @@ public:
     }
 
 
-    bool operator!=(const Polynom<T>& other) const 
+    bool operator!=(const Polynom& other) const 
     {
         return !(*this == other);
     }
 
 };
-
 
 
 template <class T>
