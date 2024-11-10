@@ -29,13 +29,21 @@ int main()
 			std::cout << "Result with root " << num << ": " << result_root << std::endl;
 		}
 		
+		std::cout << std::endl;
+
 		{
 			double array_d[] = { 10, 12, 13, 14 };
 			Polynom<double> pol_d(array_d, 3);
+			pol_d.expand(10);
+			std::cout << "Expand double polynom: " << pol_d << std::endl;
+			pol_d.shrink_to_fit();
+			std::cout << "Original double polynom: " << pol_d << std::endl;
 			std::cout << "Roots: " << *find_real_roots(pol_d) << std::endl;
+
 		}
 
-		
+		std::cout << std::endl;
+
 		{
 			std::complex<double> complex_array[4];
 

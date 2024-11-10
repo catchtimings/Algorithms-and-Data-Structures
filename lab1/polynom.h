@@ -76,7 +76,8 @@ public:
         size_t max_degree = 0;
         for (int i = deg; i >= 0; --i) 
         {
-            if (_coeffs[i] != 0) {
+            if (_coeffs[i] != 0) 
+            {
                 max_degree = static_cast<size_t>(i);
                 break;
             }
@@ -117,7 +118,7 @@ public:
         if (this != &other) 
         {
             delete[] _coeffs;
-            _degree = other.degree();
+            _degree = other._degree;
             _coeffs = new T[_degree + 1];
             for (size_t i = 0; i <= _degree; ++i) 
             {
