@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <cmath>
-#include <algorithm>
+#define EPSILON 0.0000001
 
 template <typename T>
 class Polynom
@@ -16,14 +16,14 @@ public:
     Polynom(const size_t& degree) : _degree(degree) 
     {
         _coeffs = new T[_degree + 1];
-        std::fill_n(_coeffs, _degree + 1, 0);
+        for (size_t i = 0; i <= _degree; ++i) _coeffs[i] = 0;
     }
 
 
-    Polynom(const T* vector, const size_t& degree) : _degree(degree) 
+    Polynom(const T* coeffs, const size_t& degree) : _degree(degree) 
     {
         _coeffs = new T[_degree + 1];
-        for (size_t i = 0; i <= _degree; ++i) _coeffs[i] = vector[i];
+        for (size_t i = 0; i <= _degree; ++i) _coeffs[i] = coeffs[i];
     }
 
 
@@ -41,9 +41,7 @@ public:
 
     size_t degree() const noexcept { return _degree; }
 
-
     T* coeffs() const noexcept { return _coeffs; }
-
 
     T& operator[](const size_t& index) const 
     {
@@ -83,7 +81,7 @@ public:
             }
         }
 
-        if (max_degree == 0) throw std::invalid_argument("Degree must be greater than 0");
+        //if (max_degree == 0) throw std::invalid_argument("Degree must be greater than 0");
 
         T* new_coeffs = new T[max_degree + 1];
 
@@ -131,7 +129,7 @@ public:
 
     Polynom& operator +=(const Polynom& other) 
     {
-        if (_degree != other.degree()) throw std::logic_error("Max degree must be the same");
+        if (_degree != other._degree) throw std::logic_error("Max degree must be the same");
 
         for (size_t i = 0; i <= _degree; ++i)
         {
@@ -143,7 +141,7 @@ public:
 
     Polynom& operator -=(const Polynom& other) 
     {
-        if (_degree != other.degree()) throw std::logic_error("Max degree must be the same");
+        if (_degree != other._degree) throw std::logic_error("Max degree must be the same");
 
         for (size_t i = 0; i <= _degree; ++i)
         {
@@ -167,7 +165,7 @@ public:
         if (_degree != other._degree) return false;
 
         for (size_t i = 0; i <= _degree; ++i) {
-            if (_coeffs[i] != other._coeffs[i]) return false;
+            if (std::fabs(_coeffs[i] - other._coeffs[i]) > EPSILON) return false;
         }
 
         return true;
@@ -214,7 +212,7 @@ std::ostream& operator<<(std::ostream& os, const Polynom<T>& p)
     for (int i = deg; i >= 0; --i)
     {
         os << "(" << coeffs[i] << ")" << "x^" << i << " ";
-        if (i > 0) os << " + ";
+        if (i > 0) os << "+ ";
     }
     return os;
 }
