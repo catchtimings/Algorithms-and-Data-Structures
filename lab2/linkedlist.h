@@ -1,4 +1,5 @@
 #pragma once
+#include <stdexcept>
 
 
 template<typename T>
@@ -61,5 +62,18 @@ public:
 		}
 		delete head;
 		head = ptr;
+	}
+
+	void pop_tail() {
+		Node* ptr = tail->prev;
+
+		if (tail == nullptr) {
+			throw std::logic_error("List is empty");
+		}
+		if (ptr != nullptr) {
+			ptr->next = nullptr;
+		}
+		delete tail;
+		tail = ptr;
 	}
 };
