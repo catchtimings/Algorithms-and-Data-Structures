@@ -50,4 +50,16 @@ public:
 		}
 		tail = ptr;
 	}
+
+	void pop_head() {
+		Node* ptr = head->next;
+		if (head == nullptr) {
+			throw std::logic_error("List is empty");
+		}
+		if (ptr != nullptr) {
+			ptr->prev = nullptr;
+		}
+		delete head;
+		head = ptr;
+	}
 };
