@@ -41,7 +41,7 @@ public:
 	}
 
 	void push_head(const T& value) {
-		Node* ptr = new Node(value);
+		Node* ptr = new Node<T>(value);
 
 		if (head == nullptr) {
 			head = ptr;
@@ -69,10 +69,11 @@ public:
 
 
 	void push_tail(const T& value) {
-		Node<T>* ptr = new Node(value);
+		Node<T>* ptr = new Node<T>(value);
 
 		if (head == nullptr) {
 			head = ptr;
+			tail = ptr;
 		}
 		tail->next = ptr;
 		ptr->prev = tail;
@@ -106,11 +107,11 @@ public:
 	}
 
 	void pop_tail() {
-		Node* ptr = tail->prev;
-
 		if (tail == nullptr) {
 			throw std::logic_error("List is empty");
 		}
+		Node* ptr = tail->prev;
+
 		if (ptr != nullptr) {
 			ptr->next = nullptr;
 		}
@@ -118,3 +119,11 @@ public:
 		tail = ptr;
 	}
 };
+
+template<typename T>
+std::ostream& operator<<(std::ostream & stream, const LinkedList<T>& list) {
+	for (Node<T>* ptr = list.get_head(); ptr != nullptr; ptr = ptr->next) {
+		stream << ptr->data << " ";
+	}
+	return stream;
+}
