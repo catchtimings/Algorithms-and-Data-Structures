@@ -1,5 +1,12 @@
-cmake_minimum_required(VERSION 3.10)
-
+cmake_minimum_required(VERSION 3.0)
 project(lab1 CXX)
 
-add_executable(lab1 "main.cpp" "polynom.h" "function.h")
+set(CMAKE_CXX_STANDARD 20)
+
+if (MSVC)
+    add_compile_options(/W4)
+else()
+    add_compile_options(-Wall -Wextra -pedantic)
+endif()
+
+add_executable(lab1 main.cpp)
