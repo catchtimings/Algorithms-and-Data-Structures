@@ -8,7 +8,7 @@ int main() {
 		lst.push_tail(6);
 		lst.push_tail(90);
 		lst.push_tail(19);
-		std::cout << lst[3]->data;
+		std::cout << lst;
 
 	}
 	catch (const std::exception& e) {

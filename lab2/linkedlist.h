@@ -95,10 +95,11 @@ public:
 	}
 
 	void pop_head() {
-		Node<T>* ptr = head->next;
 		if (head == nullptr) {
 			throw std::logic_error("List is empty");
 		}
+
+		Node<T>* ptr = head->next;
 		if (ptr != nullptr) {
 			ptr->prev = nullptr;
 		}
@@ -110,8 +111,8 @@ public:
 		if (tail == nullptr) {
 			throw std::logic_error("List is empty");
 		}
-		Node* ptr = tail->prev;
 
+		Node* ptr = tail->prev;
 		if (ptr != nullptr) {
 			ptr->next = nullptr;
 		}
@@ -120,6 +121,10 @@ public:
 	}
 
 	void delete_node(const T& value) {
+		if (head == nullptr) {
+			throw std::logic_error("List is empty");
+		}
+
 		Node<T>* ptr = head;
 		while (ptr && (ptr->data != value)) {
 			ptr = ptr->next;
