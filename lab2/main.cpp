@@ -8,7 +8,9 @@ int main() {
 		lst.push_tail(6);
 		lst.push_tail(90);
 		lst.push_tail(19);
-		std::cout << lst;
+		
+		LinkedList<double> lst2 = lst;
+		std::cout << lst2;
 
 	}
 	catch (const std::exception& e) {

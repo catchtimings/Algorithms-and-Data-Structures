@@ -18,11 +18,11 @@ public:
 
 	LinkedList(): head(nullptr), tail(nullptr) {}
 
-	LinkedList(const LinkedList& list) {
-		Node<T>* p = list.head;
-		while (p != nullptr) {
-			push_tail(p->data);
-			p = p->next;
+	LinkedList(const LinkedList& list) : head(nullptr), tail(nullptr) {
+		Node<T>* ptr = list.head;
+		while (ptr != nullptr) {
+			push_tail(ptr->data);
+			ptr = ptr->next;
 		}
 	}
 
@@ -47,9 +47,11 @@ public:
 			head = ptr;
 			tail = ptr;
 		}
-		head->prev = ptr;
-		ptr->next = head;
-		head = ptr;
+		else {
+			head->prev = ptr;
+			ptr->next = head;
+			head = ptr;
+		}
 	}
 
 	void push_head(const LinkedList& list) {
@@ -60,11 +62,11 @@ public:
 			head = list.head;
 			tail = list.tail;
 		}
-
-		list.tail->next = head;
-		head->prev = list.tail;
-		head = list.head;
-		
+		else {
+			list.tail->next = head;
+			head->prev = list.tail;
+			head = list.head;
+		}
 	}
 
 
@@ -75,9 +77,11 @@ public:
 			head = ptr;
 			tail = ptr;
 		}
-		tail->next = ptr;
-		ptr->prev = tail;
-		tail = ptr;
+		else {
+			tail->next = ptr;
+			ptr->prev = tail;
+			tail = ptr;
+		}
 	}
 
 	void push_tail(const LinkedList& list) {
@@ -88,10 +92,11 @@ public:
 			head = list.head;
 			tail = list.tail;
 		}
-
-		tail->next = list.head;
-		list.head->prev = tail;
-		tail = list.tail;
+		else {
+			tail->next = list.head;
+			list.head->prev = tail;
+			tail = list.tail;
+		}	
 	}
 
 	void pop_head() {
@@ -147,6 +152,24 @@ public:
 			count++;
 		}
 		return ptr;
+	}
+
+	Node<T>* operator=(const LinkedList<T>& list) {
+		if (this == list) {
+			return *this;
+		}
+
+
+		while (head != nullptr) {
+			pop_head();
+		}
+
+		Node<T>* ptr = list.head;
+		while (ptr != nullptr) {
+			push_tail(ptr->data);
+			ptr = ptr->next;
+		}
+		return *this;
 	}
 };
 
