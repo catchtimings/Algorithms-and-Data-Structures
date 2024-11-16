@@ -4,10 +4,10 @@
 
 template<typename T>
 struct Node {
-	T info;
+	T data;
 	Node *prev, *next;
 
-	Node(const T& data): info(data), next(nullptr), prev(nullptr) {}
+	Node(const T& value): data(value), next(nullptr), prev(nullptr) {}
 };
 
 template<typename T>
@@ -21,7 +21,7 @@ public:
 	LinkedList(const LinkedList& list) {
 		Node<T>* p = list.head;
 		while (p != nullptr) {
-			push_tail(p->info);
+			push_tail(p->data);
 			p = p->next;
 		}
 	}
@@ -40,8 +40,8 @@ public:
 		return tail;
 	}
 
-	void push_head(const T& data) {
-		Node* ptr = new Node(data);
+	void push_head(const T& value) {
+		Node* ptr = new Node(value);
 
 		if (head == nullptr) {
 			head = ptr;
@@ -68,8 +68,8 @@ public:
 	}
 
 
-	void push_tail(const T& data) {
-		Node<T>* ptr = new Node(data);
+	void push_tail(const T& value) {
+		Node<T>* ptr = new Node(value);
 
 		if (head == nullptr) {
 			head = ptr;
