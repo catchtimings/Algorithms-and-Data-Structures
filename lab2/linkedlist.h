@@ -13,47 +13,88 @@ struct Node {
 template<typename T>
 class LinkedList {
 private:
-	Node *head, *tail;
+	Node<T> *head, *tail;
 public:
 
 	LinkedList(): head(nullptr), tail(nullptr) {}
 
 	LinkedList(const LinkedList& list) {
-		Node* p = list.head;
+		Node<T>* p = list.head;
 		while (p != nullptr) {
-			push_tail(p);
+			push_tail(p->info);
 			p = p->next;
 		}
+	}
+
+	~LinkedList() {
+		while (head != nullptr) {
+			pop_head();
+		}
+	}
+
+	Node<T>* get_head() const noexcept {
+		return head;
+	}
+
+	Node<T>* get_tail() const noexcept {
+		return tail;
 	}
 
 	void push_head(const T& data) {
 		Node* ptr = new Node(data);
 
-		ptr->next = head;
-		if (head != nullptr) {
-			head->prev = ptr;
-		}
-		if (tail == nullptr) {
+		if (head == nullptr) {
+			head = ptr;
 			tail = ptr;
 		}
+		head->prev = ptr;
+		ptr->next = head;
 		head = ptr;
 	}
 
-	void push_tail(const T& data) {
-		Node* ptr = new Node(data);
+	void push_head(const LinkedList& list) {
+		if (list.head == nullptr)
+			return;
 
-		ptr->prev = tail;
-		if (tail != nullptr) {
-			tail->next = ptr;
+		if (head == nullptr) {
+			head = list.head;
+			tail = list.tail;
 		}
+
+		list.tail->next = head;
+		head->prev = list.tail;
+		head = list.head;
+		
+	}
+
+
+	void push_tail(const T& data) {
+		Node<T>* ptr = new Node(data);
+
 		if (head == nullptr) {
 			head = ptr;
 		}
+		tail->next = ptr;
+		ptr->prev = tail;
 		tail = ptr;
 	}
 
+	void push_tail(const LinkedList& list) {
+		if (list.head == nullptr)
+			return;
+
+		if (head == nullptr) {
+			head = list.head;
+			tail = list.tail;
+		}
+
+		tail->next = list.head;
+		list.head->prev = tail;
+		tail = list.tail;
+	}
+
 	void pop_head() {
-		Node* ptr = head->next;
+		Node<T>* ptr = head->next;
 		if (head == nullptr) {
 			throw std::logic_error("List is empty");
 		}
