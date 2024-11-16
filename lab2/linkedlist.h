@@ -118,6 +118,19 @@ public:
 		delete tail;
 		tail = ptr;
 	}
+
+	void delete_node(const T& value) {
+		Node<T>* ptr = head;
+		while (ptr->data != value) {
+			ptr = ptr->next;
+		}
+		Node<T>* right = ptr->next;
+		Node<T>* left = ptr->prev;
+
+		right->prev = left;
+		left->next = right;
+		delete ptr;
+	}
 };
 
 template<typename T>

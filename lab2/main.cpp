@@ -8,8 +8,11 @@ int main() {
 		lst.push_tail(6);
 		lst.push_tail(90);
 		lst.push_tail(19);
+		std::cout << lst << std::endl;
 
-		std::cout << lst;
+		lst.delete_node(90);
+		std::cout << lst << std::endl;
+
 	}
 	catch (const std::exception& e) {
 		std::cerr << e.what() << std::endl;
