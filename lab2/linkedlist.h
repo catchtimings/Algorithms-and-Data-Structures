@@ -121,7 +121,7 @@ public:
 
 	void delete_node(const T& value) {
 		Node<T>* ptr = head;
-		while (ptr->data != value) {
+		while (ptr && (ptr->data != value)) {
 			ptr = ptr->next;
 		}
 		Node<T>* right = ptr->next;
@@ -130,6 +130,18 @@ public:
 		right->prev = left;
 		left->next = right;
 		delete ptr;
+	}
+
+	Node<T>* operator[](const size_t& index) {
+		Node<T>* ptr = head;
+		size_t count = 0;
+
+		while (count != index) {
+			if (ptr == nullptr) return nullptr;
+			ptr = ptr->next;
+			count++;
+		}
+		return ptr;
 	}
 };
 
