@@ -9,7 +9,7 @@ int main() {
 		lst.push_tail(90);
 		lst.push_tail(19);
 
-		std::cout << lst;
+		std::cout << lst[1]->data;
 	}
 	catch (const std::exception& e) {
 		std::cerr << e.what() << std::endl;
