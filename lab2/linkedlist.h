@@ -18,11 +18,11 @@ public:
 
 	LinkedList(): head(nullptr), tail(nullptr) {}
 
-	LinkedList(const LinkedList& list) {
-		Node<T>* p = list.head;
-		while (p != nullptr) {
-			push_tail(p->data);
-			p = p->next;
+	LinkedList(const LinkedList& list) : head(nullptr), tail(nullptr) {
+		Node<T>* ptr = list.head;
+		while (ptr != nullptr) {
+			push_tail(ptr->data);
+			ptr = ptr->next;
 		}
 	}
 
@@ -62,12 +62,11 @@ public:
 			head = list.head;
 			tail = list.tail;
 		}
-		else {
-			list.tail->next = head;
-			head->prev = list.tail;
-			head = list.head;
-		}
 
+		list.tail->next = head;
+		head->prev = list.tail;
+		head = list.head;
+		
 	}
 
 
@@ -93,11 +92,10 @@ public:
 			head = list.head;
 			tail = list.tail;
 		}
-		else {
-			tail->next = list.head;
-			list.head->prev = tail;
-			tail = list.tail;
-		}
+
+		tail->next = list.head;
+		list.head->prev = tail;
+		tail = list.tail;
 	}
 
 	void pop_head() {
@@ -120,8 +118,8 @@ public:
 		if (tail == nullptr) {
 			throw std::logic_error("List is empty");
 		}
-
 		Node* ptr = tail->prev;
+
 		if (ptr != nullptr) {
 			ptr->next = nullptr;
 		}
@@ -130,18 +128,6 @@ public:
 		}
 		delete tail;
 		tail = ptr;
-	}
-
-	Node<T>* operator[](const size_t& index) {
-		Node<T>* ptr = head;
-		size_t count = 0;
-
-		while (count != index) {
-			if (ptr == nullptr) return nullptr;
-			ptr = ptr->next;
-			count++;
-		}
-		return ptr;
 	}
 };
 
