@@ -20,6 +20,10 @@ int main() {
 			
 			lst.delete_node(2);
 			std::cout << "List: " << lst << std::endl;
+
+			lst[2]->data = 99;
+			std::cout << "List: " << lst << std::endl;
+
 		}
 
 		{

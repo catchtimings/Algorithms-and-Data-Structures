@@ -130,6 +130,17 @@ public:
 		tail = ptr;
 	}
 
+	Node<T>* operator[](const size_t& index) {
+		Node<T>* ptr = head;
+		size_t count = 0;
+		while (count != index) {
+			if (ptr == nullptr) return nullptr;
+			ptr = ptr->next;
+			count++;
+		}
+		return ptr;
+	}
+
 	void delete_node(const T& value){
 		Node<T>* ptr = head;
 
