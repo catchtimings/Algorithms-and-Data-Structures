@@ -11,8 +11,8 @@ std::string choose_names() {
 	return names[rand() % size];
 }
 
-LinkedList<std::string>* generate_book(const size_t& apps_count,
-									const size_t& max_residents_count) {
+LinkedList<std::string>* generate_book(const size_t& apps_count, 
+	const size_t& max_residents_count) {
 
 	LinkedList<std::string>* book = new LinkedList<std::string>[apps_count];
 
