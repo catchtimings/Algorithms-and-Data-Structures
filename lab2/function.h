@@ -1,13 +1,14 @@
 #pragma once
 #include <string>
 #include <ctime>
+#include <iostream>
 #include "linkedlist.h"
 
 
 std::string choose_names() {
 	std::string names[] = { "Alexander", "Dmitriy", "Elizaveta", "Marina", "Semen", "Vadim", "Yulia" };
-	//size_t size = sizeof(names) / sizeof(names[0]);
-	return names[rand() % 7];
+	size_t size = sizeof(names) / sizeof(names[0]);
+	return names[rand() % size];
 }
 
 LinkedList<std::string>* generate_book(const size_t& apps_count,
