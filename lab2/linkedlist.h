@@ -41,7 +41,7 @@ public:
 	}
 
 	void push_head(const T& value) {
-		Node* ptr = new Node<T>(value);
+		Node<T>* ptr = new Node<T>(value);
 
 		if (head == nullptr) {
 			head = ptr;
@@ -118,7 +118,7 @@ public:
 		if (tail == nullptr) {
 			throw std::logic_error("List is empty");
 		}
-		Node* ptr = tail->prev;
+		Node<T>* ptr = tail->prev;
 
 		if (ptr != nullptr) {
 			ptr->next = nullptr;
@@ -128,6 +128,22 @@ public:
 		}
 		delete tail;
 		tail = ptr;
+	}
+
+	void delete_node(const T& value){
+		Node<T>* ptr = head;
+
+		while (ptr->data != value) {
+			ptr = ptr->next;
+		}
+
+		Node<T>* right = ptr->next;
+		Node<T>* left = ptr->prev;
+
+		left->next = right;
+		right->prev = left;
+
+		delete ptr;
 	}
 };
 
