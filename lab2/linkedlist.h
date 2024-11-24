@@ -164,8 +164,13 @@ public:
 
 template<typename T>
 std::ostream& operator<<(std::ostream & stream, const LinkedList<T>& list) {
-	for (Node<T>* ptr = list.get_head(); ptr != nullptr; ptr = ptr->next) {
+	/*for (Node<T>* ptr = list.get_head(); ptr != nullptr; ptr = ptr->next) {
 		stream << ptr->data << " ";
+	}*/
+	Node<T>* ptr = list.get_head();
+	while (ptr) {
+		stream << ptr->data << " ";
+		ptr = ptr->next;
 	}
 	return stream;
 }
