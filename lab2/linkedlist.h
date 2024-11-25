@@ -62,10 +62,11 @@ public:
 			head = list.head;
 			tail = list.tail;
 		}
-
-		list.tail->next = head;
-		head->prev = list.tail;
-		head = list.head;
+		else {
+			head->prev = list.tail;
+			list.tail->next = head;
+			head = list.head;
+		}
 		
 	}
 
@@ -92,10 +93,12 @@ public:
 			head = list.head;
 			tail = list.tail;
 		}
-
-		tail->next = list.head;
-		list.head->prev = tail;
-		tail = list.tail;
+		else {
+			tail->next = list.head;
+			list.head->prev = tail;
+			tail = list.tail;
+		}
+		
 	}
 
 	void pop_head() {
@@ -164,13 +167,13 @@ public:
 
 template<typename T>
 std::ostream& operator<<(std::ostream & stream, const LinkedList<T>& list) {
-	/*for (Node<T>* ptr = list.get_head(); ptr != nullptr; ptr = ptr->next) {
+	for (Node<T>* ptr = list.get_head(); ptr != nullptr; ptr = ptr->next) {
 		stream << ptr->data << " ";
-	}*/
-	Node<T>* ptr = list.get_head();
+	}
+	/*Node<T>* ptr = list.get_head();
 	while (ptr) {
 		stream << ptr->data << " ";
 		ptr = ptr->next;
-	}
+	}*/
 	return stream;
 }
