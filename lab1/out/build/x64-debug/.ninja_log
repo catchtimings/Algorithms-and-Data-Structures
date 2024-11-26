@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ninja log v5
 18	737	7520817564324338	CMakeFiles/lab1.dir/main.cpp.obj	3d5d259d3d2a66f7
 738	931	7520817565833113	lab1.exe	bd51d3f5e285b558
@@ -45,3 +46,8 @@
 730	931	7520900787374408	lab1.exe	bd51d3f5e285b558
 21	662	7520901238662864	CMakeFiles/lab1.dir/main.cpp.obj	3d5d259d3d2a66f7
 663	909	7520901240654194	lab1.exe	bd51d3f5e285b558
+=======
+# ninja log v5
+18	737	7520817564324338	CMakeFiles/lab1.dir/main.cpp.obj	3d5d259d3d2a66f7
+738	931	7520817565833113	lab1.exe	bd51d3f5e285b558
+>>>>>>> lab2
