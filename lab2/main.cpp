@@ -24,6 +24,7 @@ int main() {
 			std::cout << "Push head list: " << lst << std::endl;
 
 		}
+		std::cout << std::endl;
 		{
 			LinkedList<double> lst;
 			lst.push_tail(1);
@@ -44,8 +45,8 @@ int main() {
 			std::cout << "Push tail list: " << lst << std::endl;
 
 		}
-
-		/*{
+		std::cout << std::endl;
+		{
 			srand(static_cast<size_t>(time(0)));
 			const size_t MAX_APPS = 50;
 			const size_t MAX_RESIDENTS = 4;
@@ -55,7 +56,7 @@ int main() {
 			print_book(book, MAX_APPS);
 
 			delete[] book;
-		}*/
+		}
 	}
 	catch (const std::exception& e) {
 		std::cerr << e.what() << std::endl;
