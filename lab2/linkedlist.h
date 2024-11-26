@@ -1,6 +1,6 @@
 #pragma once
+#include <iostream>
 #include <stdexcept>
-
 
 template<typename T>
 struct Node {
@@ -13,10 +13,10 @@ struct Node {
 template<typename T>
 class LinkedList {
 private:
-	Node<T> *head, *tail;
+	Node<T>* head, * tail;
 public:
 
-	LinkedList(): head(nullptr), tail(nullptr) {}
+	LinkedList() : head(nullptr), tail(nullptr) {}
 
 	LinkedList(const LinkedList& list) : head(nullptr), tail(nullptr) {
 		Node<T>* ptr = list.head;
@@ -30,14 +30,6 @@ public:
 		while (head != nullptr) {
 			pop_head();
 		}
-	}
-
-	Node<T>* get_head() const noexcept {
-		return head;
-	}
-
-	Node<T>* get_tail() const noexcept {
-		return tail;
 	}
 
 	void push_head(const T& value) {
@@ -58,7 +50,7 @@ public:
 		if (list.head == nullptr)
 			return;
 
-		if (head == nullptr) {
+		/*if (head == nullptr) {
 			head = list.head;
 			tail = list.tail;
 		}
@@ -66,8 +58,13 @@ public:
 			head->prev = list.tail;
 			list.tail->next = head;
 			head = list.head;
+		}*/
+
+		Node<T>* ptr = list.tail;
+		while (ptr) {
+			push_head(ptr->data);
+			ptr = ptr->prev;
 		}
-		
 	}
 
 
@@ -89,7 +86,7 @@ public:
 		if (list.head == nullptr)
 			return;
 
-		if (head == nullptr) {
+		/*if (head == nullptr) {
 			head = list.head;
 			tail = list.tail;
 		}
@@ -97,8 +94,13 @@ public:
 			tail->next = list.head;
 			list.head->prev = tail;
 			tail = list.tail;
-		}
+		}*/
 		
+		Node<T>* ptr = list.head;
+		while (ptr) {
+			push_tail(ptr->data);
+			ptr = ptr->next;
+		}
 	}
 
 	void pop_head() {
@@ -119,7 +121,7 @@ public:
 
 	void pop_tail() {
 		if (tail == nullptr) {
-			throw std::logic_error("List is empty");
+			return;
 		}
 		Node<T>* ptr = tail->prev;
 
@@ -137,14 +139,14 @@ public:
 		Node<T>* ptr = head;
 		size_t count = 0;
 		while (count != index) {
-			if (ptr == nullptr) return nullptr;
+			if (ptr == nullptr) throw std::out_of_range("Invalid index");//return nullptr;
 			ptr = ptr->next;
 			count++;
 		}
 		return ptr;
 	}
 
-	void delete_node(const T& value){
+	void delete_node(const T& value) {
 		Node<T>* ptr = head;
 
 		while (ptr && (ptr->data != value)) {
@@ -163,17 +165,19 @@ public:
 
 		delete ptr;
 	}
+
+	friend std::ostream& operator<<(std::ostream & stream, const LinkedList<T>& list) {
+		for (Node<T>* ptr = list.head; ptr != nullptr; ptr = ptr->next) {
+			stream << ptr->data << " ";
+		}
+		return stream;
+	}
 };
 
-template<typename T>
-std::ostream& operator<<(std::ostream & stream, const LinkedList<T>& list) {
-	for (Node<T>* ptr = list.get_head(); ptr != nullptr; ptr = ptr->next) {
-		stream << ptr->data << " ";
-	}
-	/*Node<T>* ptr = list.get_head();
-	while (ptr) {
-		stream << ptr->data << " ";
-		ptr = ptr->next;
-	}*/
-	return stream;
-}
+//template<typename T>
+//std::ostream& operator<<(std::ostream & stream, const LinkedList<T>& list) {
+//	for (Node<T>* ptr = list.get_head(); ptr != nullptr; ptr = ptr->next) {
+//		stream << ptr->data << " ";
+//	}
+//	return stream;
+//}
