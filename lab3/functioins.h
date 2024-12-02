@@ -14,9 +14,7 @@ void insert_sort(std::vector<int>& v) {
 
 	for (size_t i = 0; i < v.size() - 1; ++i) {
 		for (size_t j = i + 1; j < v.size(); ++j) {
-			int num1 = v[i];
-			int num2 = v[j];
-			if (num1 > num2) {
+			if (v[i] > v[j]) {
 				std::swap(v[j-1], v[j]);
 			}
 		}
