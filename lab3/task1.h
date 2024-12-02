@@ -5,7 +5,7 @@
 
 void generate_vector(std::vector<int>& v) {
 	for (size_t i = 0; i < v.size(); ++i) {
-		v[i] = rand() % 1000 + 1;
+		v[i] = rand() % 100 + 1;
 	}
 }
 
@@ -33,7 +33,7 @@ void insert_sort(std::vector<int>& v) {
 void comb_sort(std::vector<int>& v) {
 	if (v.size() == 0) return;
 
-	const double factor = 1.247;
+	//const double factor = 1.247;
 	double step = v.size() - 1;
 
 	while (step >= 1) {
@@ -42,6 +42,6 @@ void comb_sort(std::vector<int>& v) {
 				std::swap(v[i], v[i + step]);
 			}
 		}
-		step /= factor;
+		step--;
 	}
 }
