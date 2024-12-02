@@ -5,12 +5,11 @@
 int main() {
 	try {
 		srand(static_cast<int>(time(0)));
-		std::vector<int> vect = { 6, 59, 236, 0 }; //общий случай для проверок
+		//std::vector<int> vect = { 6, 59, 236, 0 }; //общий случай для проверок
 		
-
 		//Сортировка вставками
 		{
-			std::vector <int> v(5);
+			std::vector <int> v(10);
 			generate_vector(v);
 
 			std::cout << "Before insert sort: ";
