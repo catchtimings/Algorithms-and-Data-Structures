@@ -13,7 +13,7 @@ struct stats {
 	}
 };
 
-void generate_vector(std::vector<int>& v) {
+void fill_vector(std::vector<int>& v) {
 	for (size_t i = 0; i < v.size(); ++i) {
 		v[i] = rand() % 100 + 1;
 	}

@@ -11,7 +11,7 @@ int main() {
 		//Сортировка вставками
 		{
 			std::vector <int> v(10);
-			generate_vector(v);
+			fill_vector(v);
 
 			std::cout << "Before insert sort: ";
 			print_vector(v);
@@ -26,7 +26,7 @@ int main() {
 		//Сортировка расчёской
 		{
 			std::vector <int> v(10);
-			generate_vector(v);
+			fill_vector(v);
 
 			std::cout << "Before comb sort: ";
 			print_vector(v);
@@ -40,7 +40,7 @@ int main() {
 		//Сортировка слиянием
 		{
 			std::vector <int> v(10);
-			generate_vector(v);
+			fill_vector(v);
 
 			std::cout << "Before merge sort: ";
 			print_vector(v);
