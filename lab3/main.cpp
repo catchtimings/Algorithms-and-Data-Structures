@@ -20,7 +20,7 @@ int main() {
 		}
 		std::cout << '\n';
 		{
-			std::vector <int> v(5);
+			std::vector <int> v(10);
 			generate_vector(v);
 
 			std::cout << "Before comb sort: ";
@@ -28,6 +28,17 @@ int main() {
 
 			insert_sort(v);
 			std::cout << "After comb sort: ";
+			print_vector(v);
+		}
+		std::cout << '\n';
+		{
+			std::vector <int> v(10);
+			generate_vector(v);
+			std::cout << "Before merge sort: ";
+			print_vector(v);
+
+			merge_sort(v);
+			std::cout << "After merge sort: ";
 			print_vector(v);
 		}
 	}
