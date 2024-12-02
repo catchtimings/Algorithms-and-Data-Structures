@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include "task1.h"
+#include "task2.h"
 
 int main() {
 	try {
@@ -48,6 +49,17 @@ int main() {
 			std::cout << "After merge sort: ";
 			print_vector(v);
 			std::cout << s;
+		}
+		std::cout << '\n';
+		//Подсчёт для больших массивов
+		{
+			stats insert_stats;
+			stats comb_stats;
+			stats merge_stats;
+			size_t count = 0;
+			counter(insert_stats, comb_stats, merge_stats, count);
+			std::cout << "Stats for vector with " << count << " elements: " << "\nInsert stats:  " << insert_stats << "\nComb stats:  " << comb_stats << "\nMerge stats:  " << merge_stats;
+
 		}
 	}
 	catch (std::exception& e) {
