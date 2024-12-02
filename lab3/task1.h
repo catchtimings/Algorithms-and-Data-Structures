@@ -17,17 +17,31 @@ void print_vector(const std::vector<int>& v) {
 }
 
 void insert_sort(std::vector<int>& v) {
-	if (v.size() == 0) throw std::logic_error("Vector is empty");
+	if (v.size() == 0) return;
 
 	for (size_t i = 1; i < v.size(); ++i) {
 		int key = v[i];
 		size_t j = i;
 		while (j > 0 && v[j-1] > key) {
-			/*v[j] = v[j-1];
-			--j;*/
 			std::swap(v[j], v[j - 1]);
 			--j;
 		}
 		v[j] = key; 
+	}
+}
+
+void comb_sort(std::vector<int>& v) {
+	if (v.size() == 0) return;
+
+	const double factor = 1.247;
+	double step = v.size() - 1;
+
+	while (step >= 1) {
+		for (size_t i = 0; i + step < v.size(); ++i) {
+			if (v[i] > v[i + step]) {
+				std::swap(v[i], v[i + step]);
+			}
+		}
+		step /= factor;
 	}
 }
