@@ -5,8 +5,9 @@
 int main() {
 	try {
 		srand(static_cast<int>(time(0)));
-		std::vector <int> v(10);
+		std::vector <int> v(5);
 		generate_vector(v);
+		//std::vector<int> v = { 6, 59, 236, 0 };
 		std::cout << "Before sort: ";
 		print_vector(v);
 
