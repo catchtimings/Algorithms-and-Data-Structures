@@ -42,6 +42,6 @@ void comb_sort(std::vector<int>& v) {
 				std::swap(v[i], v[i + step]);
 			}
 		}
-		step--;
+		--step;
 	}
 }
