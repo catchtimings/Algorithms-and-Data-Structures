@@ -23,7 +23,9 @@ void insert_sort(std::vector<int>& v) {
 		int key = v[i];
 		size_t j = i;
 		while (j > 0 && v[j-1] > key) {
-			v[j] = v[j-1];
+			/*v[j] = v[j-1];
+			--j;*/
+			std::swap(v[j], v[j - 1]);
 			--j;
 		}
 		v[j] = key; 
