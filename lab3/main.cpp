@@ -1,4 +1,3 @@
-#include <iostream>
 #include <ctime>
 #include "sorts.h"
 #include "task2.h"
@@ -30,7 +29,7 @@ int main() {
 			std::cout << "Before comb sort: ";
 			print_vector(v2);
 
-			stats s = comb_sort(v);
+			stats s = comb_sort(v2);
 			std::cout << "After comb sort: ";
 			print_vector(v2);
 			std::cout << s;
@@ -51,12 +50,12 @@ int main() {
 		std::cout << '\n';
 		//Подсчёт для больших массивов
 		{
-			stats insert_stats;
+			/*stats insert_stats;
 			stats comb_stats;
 			stats merge_stats;
-			size_t count = 0;
-			counter(insert_stats, comb_stats, merge_stats, count);
-			std::cout << "Stats for vector with " << count << " elements: " << "\nInsert stats:  " << insert_stats << "\nComb stats:  " << comb_stats << "\nMerge stats:  " << merge_stats;
+			size_t count = 0;*/
+			counter();
+			//std::cout << "Middle stats for vector with " << count << " elements: " << "\nInsert stats:  " << insert_stats << "\nComb stats:  " << comb_stats << "\nMerge stats:  " << merge_stats;
 
 		}
 	}

@@ -1,16 +1,8 @@
 #pragma once
-#include <iostream>
 #include <vector>
 #include <stdexcept>
 #include "stats.h"
 
-
-
-void fill_vector(std::vector<int>& v) {
-	for (size_t i = 0; i < v.size(); ++i) {
-		v[i] = rand() % 100 + 1;
-	}
-}
 
 void print_vector(const std::vector<int>& v) {
 	for (int num : v) {
@@ -59,7 +51,8 @@ stats comb_sort(std::vector<int>& v) {
 	return s;
 }
 
-void merge(const std::vector<int>& v1, const std::vector<int>& v2, std::vector<int>& v, stats& s) {
+void merge(const std::vector<int>& v1, const std::vector<int>& v2, 
+	std::vector<int>& v, stats& s) {
 	size_t i = 0, j = 0, k = 0;
 
 	while (i < v1.size() && j < v2.size()) {

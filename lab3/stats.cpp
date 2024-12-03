@@ -5,13 +5,12 @@ std::ostream& operator<<(std::ostream& os, const stats& s) {
 	return os;
 }
 
-stats& stats::operator+(const stats& s)
+stats& stats::operator+=(const stats& s)
 {
-	stats buf;
-	buf.comparison_count += s.comparison_count;
-	buf.copy_count += s.copy_count;
+	comparison_count += s.comparison_count;
+	copy_count += s.copy_count;
 
-	return buf;
+	return *this;
 }
 
 stats& stats::operator=(const stats& s)
@@ -21,4 +20,20 @@ stats& stats::operator=(const stats& s)
 		copy_count = s.copy_count;
 	}
 	return *this;
+}
+
+stats& stats::operator/=(const size_t& value)
+{
+	comparison_count /= value;
+	copy_count /= value;
+	return *this;
+}
+
+stats operator+(stats left, const stats& right) {
+	return left += right;
+}
+
+stats operator/(stats left, const size_t& value)
+{
+	return left /= value;
 }

@@ -5,23 +5,67 @@
 #include "stats.h"
 
 
-size_t choose_count() {
-	const size_t ARRAY[] = { 1000, 2000, 3000, 4000, 5000, 10000, 25000, 50000, 100000 };
-	size_t cap = sizeof(ARRAY) / sizeof(ARRAY[0]);
-	return ARRAY[rand() % cap];
+void fill_vector(std::vector<int>& v) {
+	for (size_t i = 0; i < v.size(); ++i) {
+		v[i] = rand() % 100 + 1;
+	}
 }
 
-void counter(stats& s1, stats& s2, stats& s3, size_t& count) {
-	size_t size = choose_count();
-	std::vector<int>v(size);
-	fill_vector(v);
 
-	std::vector<int>v1 = v;
-	std::vector<int>v2 = v;
-	std::vector<int>v3 = v;
+void generate_sorted_vector(std::vector<int>& v) {
+	for (size_t i = 0; i < v.size(); ++i) {
+		v[i] = i + 1;
+	}
+}
 
-	s1 = insert_sort(v1);
-	s2 = comb_sort(v2);
-	s3 = merge_sort(v3);
-	count = size;
+void generate_reverse_sorted_array(std::vector<int>& v) {
+	for (size_t i = 0; i < v.size(); ++i) {
+		v[i] = v.size() - i;
+	}
+}
+
+//size_t choose_count() {
+//	const size_t sizes[] = { 1000, 2000, 3000, 4000, 5000, 10000, 25000, 50000, 100000 };
+//	size_t cap = sizeof(sizes) / sizeof(sizes[0]);
+//	return sizes[rand() % cap];
+//}
+
+void counter() {
+	std::vector<size_t> sizes = { 1000, 2000, 3000, 4000, 5000, 10000, 25000, 50000, 100000 };
+	stats random_stats_total;
+	stats sorted_stats_total;
+	stats reverse_stats_total;
+
+	for (size_t size : sizes) {
+		for (size_t i = 0; i < 100; ++i) {
+			std::vector<int> random_vector(size);
+			fill_vector(random_vector);
+			stats random_stats1 = insert_sort(random_vector);
+			stats random_stats2 = comb_sort(random_vector);
+			stats random_stats3 = merge_sort(random_vector);
+			random_stats_total += random_stats1 + random_stats2 + random_stats3;
+
+			std::vector<int> sorted_vector(size);
+			generate_sorted_vector(sorted_vector);
+			stats sorted_stats1 = insert_sort(sorted_vector);
+			stats sorted_stats2 = comb_sort(sorted_vector);
+			stats sorted_stats3 = merge_sort(sorted_vector);
+			sorted_stats_total += sorted_stats1 + sorted_stats2 + sorted_stats3;
+
+
+			std::vector<int> reverse_sorted_vector(size);
+			generate_reverse_sorted_array(reverse_sorted_vector);
+			stats reverse_stats1 = insert_sort(reverse_sorted_vector);
+			stats reverse_stats2 = comb_sort(reverse_sorted_vector);
+			stats reverse_stats3 = merge_sort(reverse_sorted_vector);
+			reverse_stats_total += reverse_stats1 + reverse_stats2 + reverse_stats3;
+
+		}
+
+		/*s1 = random_stats_total / 100;
+		s2 = sorted_stats_total / 100;
+		s3 = reverse_stats_total / 100;
+		count = size;*/
+		std::cout << "Middle stats for sorts: " << "\nRandom:" << random_stats_total / 100 << "\nSorted stats:" << sorted_stats_total / 100<< "\nReverse stats: " << reverse_stats_total / 100 << '\n';
+	}
 }
