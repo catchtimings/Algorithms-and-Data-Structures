@@ -1,14 +1,14 @@
 #pragma once
 #include <vector>
 #include <ctime>
-#include "task1.h"
-
+#include "sorts.h"
+#include "stats.h"
 
 
 size_t choose_count() {
 	const size_t ARRAY[] = { 1000, 2000, 3000, 4000, 5000, 10000, 25000, 50000, 100000 };
 	size_t cap = sizeof(ARRAY) / sizeof(ARRAY[0]);
-	return ARRAY[rand() % cap + 1];
+	return ARRAY[rand() % cap];
 }
 
 void counter(stats& s1, stats& s2, stats& s3, size_t& count) {

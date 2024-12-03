@@ -1,12 +1,12 @@
 #include <iostream>
 #include <ctime>
-#include "task1.h"
+#include "sorts.h"
 #include "task2.h"
 
 int main() {
 	try {
 		srand(static_cast<int>(time(0)));
-		//std::vector<int> vect = { 6, 59, 236, 0 }; //общий случай для проверок
+		//std::vector<int> v = { 6, 59, 236, 0 }; //общий случай для проверок
 		std::vector <int> v(10);
 		fill_vector(v);
 		//Сортировка вставками

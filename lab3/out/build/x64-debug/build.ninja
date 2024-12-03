@@ -56,6 +56,13 @@ build CMakeFiles\lab3.dir\main.cpp.obj: CXX_COMPILER__lab3_unscanned_Debug C$:\U
   TARGET_COMPILE_PDB = CMakeFiles\lab3.dir\
   TARGET_PDB = lab3.pdb
 
+build CMakeFiles\lab3.dir\stats.cpp.obj: CXX_COMPILER__lab3_unscanned_Debug C$:\Users\ct\OneDrive\Рабочий$ стол\aisd\Algorithms-and-Data-Structures\lab3\stats.cpp || cmake_object_order_depends_target_lab3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  OBJECT_DIR = CMakeFiles\lab3.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab3.dir
+  TARGET_COMPILE_PDB = CMakeFiles\lab3.dir\
+  TARGET_PDB = lab3.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target lab3
@@ -64,7 +71,7 @@ build CMakeFiles\lab3.dir\main.cpp.obj: CXX_COMPILER__lab3_unscanned_Debug C$:\U
 #############################################
 # Link the executable lab3.exe
 
-build lab3.exe: CXX_EXECUTABLE_LINKER__lab3_Debug CMakeFiles\lab3.dir\main.cpp.obj
+build lab3.exe: CXX_EXECUTABLE_LINKER__lab3_Debug CMakeFiles\lab3.dir\main.cpp.obj CMakeFiles\lab3.dir\stats.cpp.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
