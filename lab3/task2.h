@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <fstream>
 #include <ctime>
 #include "sorts.h"
 #include "stats.h"
@@ -24,17 +25,18 @@ void generate_reverse_sorted_array(std::vector<int>& v) {
 	}
 }
 
-//size_t choose_count() {
-//	const size_t sizes[] = { 1000, 2000, 3000, 4000, 5000, 10000, 25000, 50000, 100000 };
-//	size_t cap = sizeof(sizes) / sizeof(sizes[0]);
-//	return sizes[rand() % cap];
-//}
-
 void counter() {
 	std::vector<size_t> sizes = { 1000, 2000, 3000, 4000, 5000, 10000, 25000, 50000, 100000 };
 	stats random_stats_total;
 	stats sorted_stats_total;
 	stats reverse_stats_total;
+
+	std::ofstream file("file.csv");
+	if (!file.is_open()) {
+		throw std::logic_error("invalid file");
+	}
+
+	file << "Size,Random_Comparisons,Random_Copies,Sorted_Comparisons,Sorted_Copies,Reverse_Comparisons,Reverse_Copies\n";
 
 	for (size_t size : sizes) {
 		for (size_t i = 0; i < 100; ++i) {
@@ -66,6 +68,10 @@ void counter() {
 		s2 = sorted_stats_total / 100;
 		s3 = reverse_stats_total / 100;
 		count = size;*/
+		file << size << ","
+			<< (random_stats_total.comparison_count / 100) << "," << (random_stats_total.copy_count / 100) << ","
+			<< (sorted_stats_total.comparison_count / 100) << "," << (sorted_stats_total.copy_count / 100) << ","
+			<< (reverse_stats_total.comparison_count / 100) << "," << (reverse_stats_total.copy_count / 100) << "\n";
 		std::cout << "Middle stats for sorts: " << "\nRandom:" << random_stats_total / 100 << "\nSorted stats:" << sorted_stats_total / 100<< "\nReverse stats: " << reverse_stats_total / 100 << '\n';
 	}
 }
