@@ -29,7 +29,7 @@ void counter() {
 	std::vector<size_t> sizes = { 1000, 2000, 3000, 4000, 5000, 10000, 25000, 50000, 100000 };
 	
 
-	std::ofstream file("file.csv");
+	std::ofstream file("stats.csv");
 	if (!file.is_open()) {
 		throw std::logic_error("invalid file");
 	}
