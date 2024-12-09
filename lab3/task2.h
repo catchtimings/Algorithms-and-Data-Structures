@@ -27,9 +27,7 @@ void generate_reverse_sorted_array(std::vector<int>& v) {
 
 void counter() {
 	std::vector<size_t> sizes = { 1000, 2000, 3000, 4000, 5000, 10000, 25000, 50000, 100000 };
-	stats random_stats_total;
-	stats sorted_stats_total;
-	stats reverse_stats_total;
+	
 
 	std::ofstream file("file.csv");
 	if (!file.is_open()) {
@@ -39,7 +37,10 @@ void counter() {
 	file << "Size,Random_Comparisons,Random_Copies,Sorted_Comparisons,Sorted_Copies,Reverse_Comparisons,Reverse_Copies\n";
 
 	for (size_t size : sizes) {
-		for (size_t i = 0; i < 100; ++i) {
+		stats random_stats_total;
+		stats sorted_stats_total;
+		stats reverse_stats_total;
+		for (size_t i = 0; i < 10; ++i) {
 			std::vector<int> random_vector(size);
 			fill_vector(random_vector);
 			stats random_stats1 = insert_sort(random_vector);
@@ -72,6 +73,8 @@ void counter() {
 			<< (random_stats_total.comparison_count / 100) << "," << (random_stats_total.copy_count / 100) << ","
 			<< (sorted_stats_total.comparison_count / 100) << "," << (sorted_stats_total.copy_count / 100) << ","
 			<< (reverse_stats_total.comparison_count / 100) << "," << (reverse_stats_total.copy_count / 100) << "\n";
-		std::cout << "Middle stats for sorts: " << "\nRandom:" << random_stats_total / 100 << "\nSorted stats:" << sorted_stats_total / 100<< "\nReverse stats: " << reverse_stats_total / 100 << '\n';
+		std::cout << "Middle stats for sorts " << size << ":" << "\nRandom:" << random_stats_total / 100 << "\nSorted stats:" << sorted_stats_total / 100 << "\nReverse stats: " << reverse_stats_total / 100 << '\n';
 	}
+	file.close();
+	std::cout << "Processing is over";
 }

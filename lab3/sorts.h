@@ -35,18 +35,22 @@ stats comb_sort(std::vector<int>& v) {
 	stats s;
 	if (v.size() == 0) return s;
 
-	//const double factor = 1.247;
-	size_t step = v.size() - 1;
+	const double k = 1.247;
+	double step = static_cast<double>(v.size());
+	bool swapped = false;
 
-	while (step >= 1) {
+	while (step >= 1 || swapped) {
+		if (step > 1) step = std::floor(step / k);
+		swapped = false;
+
 		for (size_t i = 0; i + step < v.size(); ++i) {
 			if (v[i] > v[i + step]) {
 				std::swap(v[i], v[i + step]);
-				s.comparison_count++;
+				swapped = true;
+				++s.comparison_count;
 				s.copy_count += 3;
 			}
 		}
-		--step;
 	}
 	return s;
 }
