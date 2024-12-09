@@ -39,7 +39,7 @@ stats comb_sort(std::vector<int>& v) {
 	double step = static_cast<double>(v.size());
 	bool swapped = false;
 
-	while (step >= 1 || swapped) {
+	while (step > 1 || swapped) {
 		if (step > 1) step = std::floor(step / k);
 		swapped = false;
 
