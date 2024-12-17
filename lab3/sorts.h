@@ -15,17 +15,17 @@ stats insert_sort(std::vector<int>& v) {
 	stats s;
 	if (v.size() == 0) return s;
 
-	
 	for (size_t i = 1; i < v.size(); ++i) {
 		int key = v[i];
 		size_t j = i;
-		while (j > 0 && v[j-1] > key) {
+		++s.comparison_count;
+		while (j > 0 && v[j - 1] > key) {
 			std::swap(v[j], v[j - 1]);
 			--j;
-			s.comparison_count++;
+			++s.comparison_count;
 			s.copy_count += 3;
 		}
-		v[j] = key; 
+		v[j] = key;
 	}
 
 	return s;
@@ -37,17 +37,14 @@ stats comb_sort(std::vector<int>& v) {
 
 	const double k = 1.247;
 	double step = static_cast<double>(v.size());
-	bool swapped = false;
 
-	while (step > 1 || swapped) {
+	while (step > 1) {
 		if (step > 1) step = std::floor(step / k);
-		swapped = false;
 
 		for (size_t i = 0; i + step < v.size(); ++i) {
+			++s.comparison_count;
 			if (v[i] > v[i + step]) {
 				std::swap(v[i], v[i + step]);
-				swapped = true;
-				++s.comparison_count;
 				s.copy_count += 3;
 			}
 		}

@@ -8,6 +8,7 @@ int main() {
 		//std::vector<int> v = { 6, 59, 236, 0 }; //общий случай для проверок
 		std::vector <int> v(10);
 		fill_vector(v);
+		srand(static_cast<int>(time(0)));
 		//Сортировка вставками
 		{
 			std::vector <int> v1 = v;
@@ -50,12 +51,8 @@ int main() {
 		std::cout << '\n';
 		//Подсчёт для больших массивов
 		{
-			/*stats insert_stats;
-			stats comb_stats;
-			stats merge_stats;
-			size_t count = 0;*/
+			std::cout << "--------------------------\n";
 			counter();
-			//std::cout << "Middle stats for vector with " << count << " elements: " << "\nInsert stats:  " << insert_stats << "\nComb stats:  " << comb_stats << "\nMerge stats:  " << merge_stats;
 
 		}
 	}
